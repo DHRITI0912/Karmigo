@@ -1,106 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karmigo - Hire Verified Labourers in Minutes</title>
-    <style>
-        /* Reset & Base */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; line-height: 1.6; background: #f9f9f9; color: #333; }
-        a { text-decoration: none; color: inherit; }
-        img { max-width: 100%; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karmigo - Book Labour in Minutes</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background: #fffbe6; color: #333; }
+    a { text-decoration: none; }
 
-        /* Header */
-        header {
-            background: #ff7f32;
-            color: white;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        header h1 { font-size: 1.5rem; }
-        nav a { margin-left: 20px; font-weight: bold; }
+    /* Header */
+    header {
+        background: #ffc107;
+        color: black;
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+    header h1 { font-size: 1.5rem; font-weight: bold; }
+    nav a { margin-left: 15px; font-weight: bold; color: black; }
 
-        /* Hero Section */
-        .hero {
-            background: url('https://images.unsplash.com/photo-1622630998473-b9c9bfbecd41?fit=crop&w=1350&q=80') center/cover no-repeat;
-            color: white;
-            text-align: center;
-            padding: 5rem 1rem;
-        }
-        .hero h2 { font-size: 2.5rem; margin-bottom: 1rem; }
-        .hero p { font-size: 1.2rem; margin-bottom: 2rem; }
-        .cta-btn {
-            background: #333;
-            padding: 0.8rem 1.5rem;
-            border-radius: 5px;
-            color: white;
-            font-size: 1rem;
-            cursor: pointer;
-        }
+    /* Hero */
+    .hero {
+        background: #ffc107;
+        padding: 2rem 1rem;
+        text-align: center;
+    }
+    .hero h2 { font-size: 2rem; margin-bottom: 0.5rem; }
+    .hero p { font-size: 1rem; margin-bottom: 1rem; }
+    .booking-box {
+        background: white;
+        padding: 1rem;
+        border-radius: 10px;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        max-width: 600px;
+        margin: auto;
+        display: grid;
+        gap: 0.7rem;
+    }
+    select, input, button {
+        padding: 0.7rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+    }
+    button {
+        background: black;
+        color: white;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    button:hover { background: #333; }
 
-        /* Booking Form */
-        .booking-form {
-            background: white;
-            max-width: 800px;
-            margin: -40px auto 2rem;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1rem;
-        }
-        select, input, button {
-            padding: 0.6rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button {
-            background: #ff7f32;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
+    /* Sections */
+    section { padding: 2rem 1rem; max-width: 1100px; margin: auto; }
+    h3 { text-align: center; margin-bottom: 1rem; color: black; }
+    .grid {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    .card {
+        background: white;
+        border-radius: 10px;
+        padding: 1rem;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .card img { border-radius: 8px; height: 150px; object-fit: cover; margin-bottom: 0.5rem; }
+    .card h4 { margin-bottom: 0.3rem; }
 
-        /* Sections */
-        section { padding: 2rem; max-width: 1100px; margin: auto; }
-        h3 { text-align: center; margin-bottom: 1rem; color: #ff7f32; }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-        }
-        .card {
-            background: white;
-            padding: 1rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        .card img { height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 0.8rem; }
-        .card h4 { margin-bottom: 0.5rem; }
-
-        /* Footer */
-        footer {
-            background: #333;
-            color: white;
-            padding: 1.5rem 2rem;
-            text-align: center;
-        }
-        .lang-toggle { margin-top: 1rem; }
-        .lang-toggle button {
-            background: #ff7f32;
-            color: white;
-            border: none;
-            padding: 0.4rem 0.8rem;
-            margin: 0 5px;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-    </style>
+    /* Footer */
+    footer {
+        background: black;
+        color: white;
+        text-align: center;
+        padding: 1rem;
+    }
+    .lang-toggle button {
+        background: #ffc107;
+        border: none;
+        margin: 0 5px;
+        padding: 0.4rem 0.8rem;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+</style>
 </head>
 <body>
 
@@ -108,30 +97,28 @@
     <h1>Karmigo</h1>
     <nav>
         <a href="#services">Services</a>
-        <a href="#how-it-works">How It Works</a>
+        <a href="#how">How It Works</a>
         <a href="#rewards">Rewards</a>
-        <a href="#download">Download App</a>
+        <a href="#download">App</a>
     </nav>
 </header>
 
 <section class="hero">
-    <h2>Hire Verified Labourers in Minutes</h2>
-    <p>From shifting to construction help, get trusted labour at your doorstep.</p>
-    <a href="#booking" class="cta-btn">Book Now</a>
-</section>
-
-<section id="booking" class="booking-form">
-    <select>
-        <option>Select Service</option>
-        <option>Shifting Help</option>
-        <option>Loading & Unloading</option>
-        <option>Stair Carrying</option>
-        <option>Construction Site Labour</option>
-    </select>
-    <input type="text" placeholder="Location">
-    <input type="date">
-    <input type="time">
-    <button>Search</button>
+    <h2>Book Labour in Minutes</h2>
+    <p>Fast, affordable, and verified labour for all your needs.</p>
+    <div class="booking-box">
+        <select>
+            <option>Select Service</option>
+            <option>Shifting Help</option>
+            <option>Loading & Unloading</option>
+            <option>Stair Carrying</option>
+            <option>Construction Site Labour</option>
+        </select>
+        <input type="text" placeholder="Enter Location">
+        <input type="date">
+        <input type="time">
+        <button onclick="alert('Searching for labourers...')">Search</button>
+    </div>
 </section>
 
 <section id="services">
@@ -140,76 +127,71 @@
         <div class="card">
             <img src="https://images.unsplash.com/photo-1622630998473-b9c9bfbecd41?fit=crop&w=800&q=80" alt="Shifting">
             <h4>Shifting Help</h4>
-            <p>Residential and office shifting made easy with our verified helpers.</p>
+            <p>Quick and safe household or office shifting.</p>
         </div>
         <div class="card">
             <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?fit=crop&w=800&q=80" alt="Loading">
             <h4>Loading & Unloading</h4>
-            <p>Safe and quick loading/unloading for trucks, warehouses, and more.</p>
+            <p>Heavy lifting for trucks, warehouses, and more.</p>
         </div>
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1600294037681-0b8d7e2b7f8d?fit=crop&w=800&q=80" alt="Stair">
+            <img src="https://images.unsplash.com/photo-1600294037681-0b8d7e2b7f8d?fit=crop&w=800&q=80" alt="Stairs">
             <h4>Stair Carrying</h4>
-            <p>Effortless moving of furniture and heavy items up or down stairs.</p>
+            <p>Moving heavy items up or down stairs.</p>
         </div>
         <div class="card">
             <img src="https://images.unsplash.com/photo-1602311734052-0b8e0a5d7a5b?fit=crop&w=800&q=80" alt="Construction">
-            <h4>Construction Site Labour</h4>
-            <p>Skilled and unskilled labour for construction and industrial work.</p>
+            <h4>Construction Labour</h4>
+            <p>Skilled and unskilled workers for your projects.</p>
         </div>
     </div>
 </section>
 
-<section id="how-it-works">
+<section id="how">
     <h3>How It Works</h3>
     <div class="grid">
         <div class="card">
-            <h4>1. Choose Service & Time</h4>
-            <p>Select the type of help you need, location, and preferred time.</p>
+            <h4>1. Select Service</h4>
+            <p>Choose the labour type you need.</p>
         </div>
         <div class="card">
             <h4>2. Get Matched</h4>
-            <p>We connect you with nearby verified labourers instantly.</p>
+            <p>We connect you with nearby verified workers.</p>
         </div>
         <div class="card">
             <h4>3. Track & Pay</h4>
-            <p>Track your helper in real-time and pay securely via app or cash.</p>
+            <p>Live tracking and secure payments.</p>
         </div>
     </div>
 </section>
 
 <section id="rewards">
     <h3>Rewards & Pricing</h3>
-    <div class="card" style="max-width:600px;margin:auto;">
-        <p>Earn <b>1 coin</b> for every ₹100 spent. Use coins for discounts or withdraw them directly.  
+    <div class="card" style="max-width:600px; margin:auto;">
+        <p>Earn <b>1 coin</b> for every ₹100 spent.  
+        Use coins for discounts or withdraw them.  
         Waiting charges: ₹3/min after 30 mins.  
-        Cancellation fee: ₹50–₹100 for no-shows.</p>
+        Cancellation fee: ₹50–₹100.</p>
     </div>
 </section>
 
 <section id="download">
-    <h3>Download Our App</h3>
-    <p style="text-align:center;">Get the Karmigo app for easy booking and tracking.</p>
+    <h3>Get the Karmigo App</h3>
+    <p style="text-align:center;">Book, track, and pay with ease.</p>
     <div style="text-align:center; margin-top:1rem;">
-        <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" width="150"></a>
-        <a href="#"><img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store" width="150"></a>
+        <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" width="150"></a>
+        <a href="#"><img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" width="150"></a>
     </div>
 </section>
 
 <footer>
     <p>&copy; 2025 Karmigo. All Rights Reserved.</p>
     <div class="lang-toggle">
-        <button onclick="changeLang('en')">EN</button>
-        <button onclick="changeLang('hi')">हिंदी</button>
-        <button onclick="changeLang('mr')">मराठी</button>
+        <button onclick="alert('Language switched to English')">EN</button>
+        <button onclick="alert('भाषा बदलली: मराठी')">MR</button>
+        <button onclick="alert('भाषा बदली: हिंदी')">HI</button>
     </div>
 </footer>
-
-<script>
-    function changeLang(lang) {
-        alert('Language switched to: ' + lang);
-    }
-</script>
 
 </body>
 </html>
