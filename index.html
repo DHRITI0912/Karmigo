@@ -1,197 +1,357 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Karmigo - Book Labour in Minutes</title>
-<style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: Arial, sans-serif; background: #fffbe6; color: #333; }
-    a { text-decoration: none; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Karmigo — Book Labour in Minutes</title>
+  <meta name="description" content="Karmigo lets you book verified labourers in minutes for shifting, loading/unloading, stair carrying, and construction help." />
+
+  <!-- Favicon -->
+  <link rel="icon" href="./karmigo logo.jpeg" type="image/jpeg" />
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root{
+      --brand: #ffc107;      /* Hero section yellow */
+      --header-bg: #ffb300;  /* Slightly darker yellow for header */
+      --ink: #000;
+      --bg: #fffbe6;
+      --card: #fff;
+      --muted: #666;
+      --radius: 12px;
+      --shadow: 0 4px 12px rgba(0,0,0,.08);
+    }
+    body{
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: #222;
+      line-height: 1.55;
+    }
+    a{ color: inherit; text-decoration: none; }
 
     /* Header */
-    header {
-        background: #ffc107;
-        color: black;
-        padding: 1rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: sticky;
-        top: 0;
-        z-index: 100;
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--header-bg);
+      color: var(--ink);
+      box-shadow: var(--shadow);
     }
-    header h1 { font-size: 1.5rem; font-weight: bold; }
-    nav a { margin-left: 15px; font-weight: bold; color: black; }
+    .nav{
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: .75rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand{
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      font-weight: 800;
+      letter-spacing: .5px;
+    }
+    .brand img.logo{
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #fff;
+    }
+    nav a{ font-weight: 700; margin-left: 1rem; }
+    nav .cta{
+      background: var(--ink);
+      color: #fff;
+      padding: .6rem .9rem;
+      border-radius: 999px;
+    }
 
     /* Hero */
-    .hero {
-        background: #ffc107;
-        padding: 2rem 1rem;
-        text-align: center;
+    .hero{
+      background: var(--brand);
+      padding: 2.25rem 1rem 1.5rem;
+      text-align: center;
     }
-    .hero h2 { font-size: 2rem; margin-bottom: 0.5rem; }
-    .hero p { font-size: 1rem; margin-bottom: 1rem; }
-    .booking-box {
-        background: white;
-        padding: 1rem;
-        border-radius: 10px;
-        box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-        max-width: 600px;
-        margin: auto;
-        display: grid;
-        gap: 0.7rem;
+    .hero-inner{ max-width: 1100px; margin: 0 auto; }
+    .hero h1{ font-size: clamp(1.75rem, 3.5vw, 2.75rem); margin-bottom: .5rem; font-weight: 900; }
+    .hero p{ color: #1a1a1a; margin: 0 auto 1rem; max-width: 720px; }
+    .hero-logo{
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #fff;
+      margin: 0 auto .75rem;
+      display: block;
     }
-    select, input, button {
-        padding: 0.7rem;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 1rem;
+
+    /* Booking box */
+    .booking{
+      max-width: 900px;
+      margin: -28px auto 2rem;
+      padding: 1rem;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
     }
-    button {
-        background: black;
-        color: white;
-        cursor: pointer;
-        font-weight: bold;
+    .booking form{
+      display: grid;
+      gap: .75rem;
+      grid-template-columns: repeat(2, minmax(0,1fr));
     }
-    button:hover { background: #333; }
+    .booking select, .booking input, .booking button{
+      width: 100%;
+      padding: .8rem .9rem;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 1rem;
+      background: #fff;
+    }
+    .booking button{
+      background: var(--ink);
+      color: #fff;
+      border: none;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform .04s ease;
+    }
+    .booking button:active{ transform: scale(.98); }
+    .est{
+      margin-top: .5rem;
+      font-size: .95rem;
+      color: var(--muted);
+    }
 
     /* Sections */
-    section { padding: 2rem 1rem; max-width: 1100px; margin: auto; }
-    h3 { text-align: center; margin-bottom: 1rem; color: black; }
-    .grid {
-        display: grid;
-        gap: 1rem;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    section{ max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; }
+    h2.section-title{
+      text-align: center;
+      font-size: clamp(1.3rem, 2.6vw, 1.75rem);
+      margin-bottom: 1rem;
+      font-weight: 900;
     }
-    .card {
-        background: white;
-        border-radius: 10px;
-        padding: 1rem;
-        text-align: center;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    .grid{
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     }
-    .card img { border-radius: 8px; height: 150px; object-fit: cover; margin-bottom: 0.5rem; }
-    .card h4 { margin-bottom: 0.3rem; }
+    .card{
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1rem;
+      text-align: center;
+    }
+    .card img{
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: .6rem;
+    }
+    .card h3{ font-size: 1.05rem; margin-bottom: .25rem; }
+    .muted{ color: var(--muted); }
 
     /* Footer */
-    footer {
-        background: black;
-        color: white;
-        text-align: center;
-        padding: 1rem;
+    footer{
+      background: #000;
+      color: #fff;
+      text-align: center;
+      padding: 1.25rem;
+      margin-top: 1rem;
     }
-    .lang-toggle button {
-        background: #ffc107;
-        border: none;
-        margin: 0 5px;
-        padding: 0.4rem 0.8rem;
-        border-radius: 4px;
-        cursor: pointer;
+    .lang{
+      margin-top: .6rem;
+      display: flex;
+      justify-content: center;
+      gap: .5rem;
     }
-</style>
+    .lang button{
+      background: var(--brand);
+      border: 0;
+      padding: .4rem .7rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    /* Responsive */
+    @media (min-width: 720px){
+      .booking form{ grid-template-columns: repeat(5, minmax(0,1fr)); }
+    }
+  </style>
 </head>
 <body>
 
-<header>
-    <h1>Karmigo</h1>
-    <nav>
+  <!-- Header -->
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <img class="logo" src="./karmigo logo.jpeg" alt="Karmigo logo" />
+        <span>KARMIGO</span>
+      </div>
+      <nav>
         <a href="#services">Services</a>
-        <a href="#how">How It Works</a>
+        <a href="#how">How it works</a>
         <a href="#rewards">Rewards</a>
-        <a href="#download">App</a>
-    </nav>
-</header>
-
-<section class="hero">
-    <h2>Book Labour in Minutes</h2>
-    <p>Fast, affordable, and verified labour for all your needs.</p>
-    <div class="booking-box">
-        <select>
-            <option>Select Service</option>
-            <option>Shifting Help</option>
-            <option>Loading & Unloading</option>
-            <option>Stair Carrying</option>
-            <option>Construction Site Labour</option>
-        </select>
-        <input type="text" placeholder="Enter Location">
-        <input type="date">
-        <input type="time">
-        <button onclick="alert('Searching for labourers...')">Search</button>
+        <a href="#download" class="cta">Get the App</a>
+      </nav>
     </div>
-</section>
+  </header>
 
-<section id="services">
-    <h3>Our Services</h3>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <img class="hero-logo" src="./karmigo logo.jpeg" alt="Karmigo logo large" />
+      <h1>Book Labour in Minutes</h1>
+      <p>Fast, affordable, and verified labour for shifting, loading/unloading, stair carrying, and construction help — anytime, anywhere.</p>
+    </div>
+  </section>
+
+  <!-- Booking box -->
+  <div class="booking" id="booking">
+    <form id="bookForm" onsubmit="event.preventDefault(); fakeSearch();">
+      <select id="service">
+        <option value="">Select Service</option>
+        <option value="shifting">Shifting Help</option>
+        <option value="loading">Loading & Unloading</option>
+        <option value="stairs">Stair Carrying</option>
+        <option value="construction">Construction Site Labour</option>
+      </select>
+
+      <input id="location" type="text" placeholder="Enter Location" />
+      <input id="date" type="date" />
+      <input id="time" type="time" />
+      <button type="submit">Search</button>
+    </form>
+    <div id="estimate" class="est"></div>
+  </div>
+
+  <!-- Services -->
+  <section id="services">
+    <h2 class="section-title">Our Services</h2>
     <div class="grid">
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1622630998473-b9c9bfbecd41?fit=crop&w=800&q=80" alt="Shifting">
-            <h4>Shifting Help</h4>
-            <p>Quick and safe household or office shifting.</p>
-        </div>
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?fit=crop&w=800&q=80" alt="Loading">
-            <h4>Loading & Unloading</h4>
-            <p>Heavy lifting for trucks, warehouses, and more.</p>
-        </div>
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1600294037681-0b8d7e2b7f8d?fit=crop&w=800&q=80" alt="Stairs">
-            <h4>Stair Carrying</h4>
-            <p>Moving heavy items up or down stairs.</p>
-        </div>
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1602311734052-0b8e0a5d7a5b?fit=crop&w=800&q=80" alt="Construction">
-            <h4>Construction Labour</h4>
-            <p>Skilled and unskilled workers for your projects.</p>
-        </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1622630998473-b9c9bfbecd41?auto=format&fit=crop&w=1000&q=60" alt="Shifting help" />
+        <h3>Shifting Help</h3>
+        <p class="muted">Quick and safe household or office shifting with verified helpers.</p>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1000&q=60" alt="Loading and unloading" />
+        <h3>Loading & Unloading</h3>
+        <p class="muted">Heavy lifting for trucks, warehouses, and export/import hubs.</p>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1600294037681-0b8d7e2b7f8d?auto=format&fit=crop&w=1000&q=60" alt="Stair carrying" />
+        <h3>Stair Carrying</h3>
+        <p class="muted">Move furniture and appliances up or down stairs, hassle-free.</p>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1602311734052-0b8e0a5d7a5b?auto=format&fit=crop&w=1000&q=60" alt="Construction labour" />
+        <h3>Construction Labour</h3>
+        <p class="muted">Skilled and unskilled workers for sites and industrial work.</p>
+      </div>
     </div>
-</section>
+  </section>
 
-<section id="how">
-    <h3>How It Works</h3>
+  <!-- How it works -->
+  <section id="how">
+    <h2 class="section-title">How It Works</h2>
     <div class="grid">
-        <div class="card">
-            <h4>1. Select Service</h4>
-            <p>Choose the labour type you need.</p>
-        </div>
-        <div class="card">
-            <h4>2. Get Matched</h4>
-            <p>We connect you with nearby verified workers.</p>
-        </div>
-        <div class="card">
-            <h4>3. Track & Pay</h4>
-            <p>Live tracking and secure payments.</p>
-        </div>
+      <div class="card">
+        <h3>1. Select Service</h3>
+        <p class="muted">Pick service, location, date, and time.</p>
+      </div>
+      <div class="card">
+        <h3>2. Get Matched</h3>
+        <p class="muted">We connect you to nearby verified labourers.</p>
+      </div>
+      <div class="card">
+        <h3>3. Track & Pay</h3>
+        <p class="muted">Live tracking, in-app chat, and secure payments.</p>
+      </div>
     </div>
-</section>
+  </section>
 
-<section id="rewards">
-    <h3>Rewards & Pricing</h3>
-    <div class="card" style="max-width:600px; margin:auto;">
-        <p>Earn <b>1 coin</b> for every ₹100 spent.  
-        Use coins for discounts or withdraw them.  
-        Waiting charges: ₹3/min after 30 mins.  
-        Cancellation fee: ₹50–₹100.</p>
+  <!-- Rewards -->
+  <section id="rewards">
+    <h2 class="section-title">Rewards & Pricing</h2>
+    <div class="card" style="max-width:720px;margin:0 auto;">
+      <p style="margin-bottom:.5rem;">Earn <strong>1 coin</strong> for every ₹100 spent — redeem for discounts or withdraw (small deduction applies).</p>
+      <p class="muted">Waiting charges: ₹3/min after 30 mins. | Cancellation fee: ₹50–₹100 for no-shows.</p>
     </div>
-</section>
+  </section>
 
-<section id="download">
-    <h3>Get the Karmigo App</h3>
-    <p style="text-align:center;">Book, track, and pay with ease.</p>
-    <div style="text-align:center; margin-top:1rem;">
-        <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" width="150"></a>
-        <a href="#"><img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" width="150"></a>
+  <!-- Download -->
+  <section id="download">
+    <h2 class="section-title">Get the Karmigo App</h2>
+    <p class="muted" style="text-align:center; margin-bottom:.8rem;">Book, track, and pay with ease on Android & iOS.</p>
+    <div style="text-align:center;">
+      <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" width="170" alt="Get it on Google Play" /></a>
+      <a href="#"><img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" width="160" alt="Download on the App Store" /></a>
     </div>
-</section>
+  </section>
 
-<footer>
-    <p>&copy; 2025 Karmigo. All Rights Reserved.</p>
-    <div class="lang-toggle">
-        <button onclick="alert('Language switched to English')">EN</button>
-        <button onclick="alert('भाषा बदलली: मराठी')">MR</button>
-        <button onclick="alert('भाषा बदली: हिंदी')">HI</button>
+  <!-- Footer -->
+  <footer>
+    <div>&copy; 2025 Karmigo. All Rights Reserved.</div>
+    <div class="lang">
+      <button onclick="switchLang('en')">EN</button>
+      <button onclick="switchLang('hi')">हिंदी</button>
+      <button onclick="switchLang('mr')">मराठी</button>
     </div>
-</footer>
+  </footer>
 
+  <script>
+    const baseRates = {
+      shifting: 399,
+      loading: 349,
+      stairs: 299,
+      construction: 449
+    };
+    const surgeByHour = (hour) => {
+      if (hour >= 18 || hour < 8) return 1.15;
+      if (hour >= 12 && hour < 16) return 0.95;
+      return 1.0;
+    };
+    function formatINR(n){
+      return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(n);
+    }
+    function estimatePrice(){
+      const svc = document.getElementById('service').value;
+      const date = document.getElementById('date').value;
+      const time = document.getElementById('time').value;
+      const estBox = document.getElementById('estimate');
+      if(!svc){ estBox.textContent = ''; return; }
+      let price = baseRates[svc] || 349;
+      let hour = 10;
+      if(time){ hour = parseInt(time.split(':')[0], 10); }
+      price = Math.round(price * surgeByHour(hour));
+      if(date){
+        const d = new Date(date);
+        const day = d.getUTCDay();
+        if(day === 0 || day === 6) price = Math.round(price * 1.08);
+      }
+      estBox.textContent = `Estimated starting price: ${formatINR(price)} (final may vary by duration & distance)`;
+    }
+    function fakeSearch(){
+      estimatePrice();
+      setTimeout(() => {
+        alert('Searching nearby verified labourers…\n(This is a demo. Connect to your backend to go live.)');
+      }, 250);
+    }
+    function switchLang(code){
+      const map = { en:'Language set to English', hi:'भाषा हिंदी में बदली गई', mr:'भाषा मराठीमध्ये बदलली' };
+      alert(map[code] || 'Language switched');
+    }
+    ['service','date','time'].forEach(id=>{
+      const el = document.getElementById(id);
+      el.addEventListener('change', estimatePrice);
+      el.addEventListener('input', estimatePrice);
+    });
+  </script>
 </body>
 </html>
